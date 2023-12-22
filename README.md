@@ -1,1 +1,0 @@
-# cypress-modern-automation-testing
