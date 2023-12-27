@@ -1,5 +1,4 @@
-// cypress - Spec
-
+// Intellisense autocorrect, tool tips etc
 /// <reference types="Cypress" />
 
 describe('My First Test Suite', function () {
