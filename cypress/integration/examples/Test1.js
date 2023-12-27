@@ -25,5 +25,9 @@ describe('My First Test Suite', function () {
 					cy.wrap($el).find('button').click();
 				}
 			});
+		const logo = cy.get('.brand').then(function (logoElement) {
+			cy.log(logoElement.text());
+		});
+		// cy.log(logo.text());
 	});
 });
