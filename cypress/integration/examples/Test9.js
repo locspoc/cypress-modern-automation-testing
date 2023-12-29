@@ -14,5 +14,18 @@ describe('My Nineth Test Suite', function () {
 		cy.visit('https://rahulshettyacademy.com/angularpractice/');
 		cy.get('input[name="name"]:nth-child(2)').type(this.data.name);
 		cy.get('select').select(this.data.gender);
+		// Two way binding example input matches name
+		cy.get(':nth-child(4) > .ng-untouched').should(
+			'have.value',
+			this.data.name
+		);
+		// Min Length is 2
+		cy.get('input[name="name"]:nth-child(2)').should(
+			'have.attr',
+			'minlength',
+			'2'
+		);
+		// Entrepreneur option box is disabled
+		cy.get('#inlineRadio3').should('be.disabled');
 	});
 });
