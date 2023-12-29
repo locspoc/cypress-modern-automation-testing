@@ -27,5 +27,8 @@ describe('My Nineth Test Suite', function () {
 		);
 		// Entrepreneur option box is disabled
 		cy.get('#inlineRadio3').should('be.disabled');
+		cy.get(':nth-child(2) > .nav-link').click();
+		// Custom Command
+		cy.selectProduct('Nokia');
 	});
 });
