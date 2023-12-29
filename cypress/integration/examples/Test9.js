@@ -30,6 +30,10 @@ describe('My Nineth Test Suite', function () {
 		this.data.productName.forEach((product) => {
 			cy.selectProduct(product);
 		});
+		// cy.wait(5000);
 		productsPage.getCheckoutButton().click();
+		cy.contains('Checkout').click();
+		cy.get('#country').type('India');
+		cy.get('.suggestions > ul > li > a').click();
 	});
 });
