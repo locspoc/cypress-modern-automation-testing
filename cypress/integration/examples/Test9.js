@@ -27,6 +27,7 @@ describe('My Nineth Test Suite', function () {
 		);
 		// Entrepreneur option box is disabled
 		cy.get('#inlineRadio3').should('be.disabled');
+		cy.pause();
 		cy.get(':nth-child(2) > .nav-link').click();
 		// Array and Custom Command
 		this.data.productName.forEach((product) => {
