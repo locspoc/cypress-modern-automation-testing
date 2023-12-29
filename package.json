@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/locspoc/cypress-modern-automation-testing#readme",
   "devDependencies": {
-    "cypress": "^13.6.1"
+    "cypress": "^13.6.1",
+    "cypress-iframe": "^1.0.1"
   }
 }
