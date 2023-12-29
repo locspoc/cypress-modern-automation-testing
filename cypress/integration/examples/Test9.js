@@ -1,4 +1,5 @@
 // Testing Framework
+import HomePage from '../pageObjects/HomePage';
 
 // Intellisense autocorrect, tool tips etc
 /// <reference types="Cypress" />
@@ -11,6 +12,7 @@ describe('My Nineth Test Suite', function () {
 		});
 	});
 	it('Test case 1', function () {
+		const homePage = new HomePage();
 		cy.visit('https://rahulshettyacademy.com/angularpractice/');
 		cy.get('input[name="name"]:nth-child(2)').type(this.data.name);
 		cy.get('select').select(this.data.gender);
