@@ -32,6 +32,18 @@ describe('My Nineth Test Suite', function () {
 		});
 		// cy.wait(5000);
 		productsPage.getCheckoutButton().click();
+		// Compare Line Items Vs Total
+		let sum = 0;
+		cy.get('tr td:nth-child(4) strong').each(($el, index, $list) => {
+			// cy.log($el.text());
+			const amount = $el.text();
+			let res = amount.split(' ');
+			res = res[1].trim();
+			sum = sum + parseInt(res);
+			cy.log(res);
+			cy.log(sum);
+		});
+		cy.log(sum);
 		cy.contains('Checkout').click();
 		cy.get('#country').type('India');
 		cy.get('.suggestions > ul > li > a').click();
