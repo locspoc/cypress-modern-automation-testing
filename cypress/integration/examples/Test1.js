@@ -3,6 +3,7 @@
 
 describe('My First Test Suite', function () {
 	it('My first test case', function () {
+		Cypress.config('defaultCommandTimeout', 8000);
 		cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/');
 		cy.get('.search-keyword').type('ca');
 		cy.wait(2000);
