@@ -15,7 +15,12 @@ describe('My Nineth Test Suite', function () {
 	it('Test case 1', function () {
 		const homePage = new HomePage();
 		const productsPage = new ProductsPage();
-		cy.visit('https://rahulshettyacademy.com/angularpractice/');
+
+		// cy.log('https://rahulshettyacademy.com/angularpractice/');
+		// cy.log(Cypress.env('url') + '/angularpractice/');
+		// cy.pause();
+		cy.visit(Cypress.env('url') + '/angularpractice/');
+		// cy.visit('https://rahulshettyacademy.com/angularpractice/');
 		homePage.getEditBox().type(this.data.name);
 		homePage.getGender().select(this.data.gender);
 		// Two way binding example input matches name
