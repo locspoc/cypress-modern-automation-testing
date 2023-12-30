@@ -24,7 +24,7 @@ describe('My Nineth Test Suite', function () {
 		homePage.getEditBox().should('have.attr', 'minlength', '2');
 		// Entrepreneur option box is disabled
 		homePage.getEntrepreneur().should('be.disabled');
-		cy.pause();
+		// cy.pause();
 		homePage.getShopTab().click();
 		// Array and Custom Command
 		this.data.productName.forEach((product) => {
@@ -35,5 +35,18 @@ describe('My Nineth Test Suite', function () {
 		cy.contains('Checkout').click();
 		cy.get('#country').type('India');
 		cy.get('.suggestions > ul > li > a').click();
+		cy.get('#checkbox2').click({ force: true });
+		cy.get('input[type="submit"]').click();
+		// cy.get('.alert').should(
+		// 	'have.text',
+		// 	'Success! Thank you! Your order will be delivered in next few weeks :-).'
+		// );
+		cy.get('.alert').then((element) => {
+			const actualText = element.text();
+			expect(actualText.includes('Success')).to.be.true;
+			// if(actualText.includes("Success")){
+			// 	//
+			// }
+		});
 	});
 });
