@@ -11,4 +11,5 @@ module.exports = defineConfig({
 	env: {
 		url: 'https://rahulshettyacademy.com',
 	},
+	projectId: 's4g31o',
 });
