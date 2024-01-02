@@ -1,23 +1,26 @@
 {
-  "name": "cypress-modern-automation-testing",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/locspoc/cypress-modern-automation-testing.git"
-  },
-  "author": "Loc Tran",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/locspoc/cypress-modern-automation-testing/issues"
-  },
-  "homepage": "https://github.com/locspoc/cypress-modern-automation-testing#readme",
-  "devDependencies": {
-    "cypress": "^13.6.1",
-    "cypress-iframe": "^1.0.1"
-  }
+	"name": "cypress-modern-automation-testing",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "npx cypress run",
+		"testHeaded": "npm run test -- --headed",
+		"testChrome": "npm run test -- --browser chrome",
+		"testRecordDashboard": "npm run test -- --record --key b462e349-4f51-4ff8-b8ce-2941c9b235f4"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/locspoc/cypress-modern-automation-testing.git"
+	},
+	"author": "Loc Tran",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/locspoc/cypress-modern-automation-testing/issues"
+	},
+	"homepage": "https://github.com/locspoc/cypress-modern-automation-testing#readme",
+	"devDependencies": {
+		"cypress": "^13.6.1",
+		"cypress-iframe": "^1.0.1"
+	}
 }
