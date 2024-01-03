@@ -9,6 +9,12 @@
 		"testChrome": "npm run test -- --browser chrome",
 		"testRecordDashboard": "npm run test -- --record --key b462e349-4f51-4ff8-b8ce-2941c9b235f4"
 	},
+	"cypress-cucumber-preprocessor": {
+		"json": {
+			"enabled": true,
+			"output": "cypress/cucumberReports/results.json"
+		}
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/locspoc/cypress-modern-automation-testing.git"
@@ -23,6 +29,7 @@
 		"@badeball/cypress-cucumber-preprocessor": "^20.0.0",
 		"@cypress/browserify-preprocessor": "^3.0.2",
 		"cypress": "^13.6.1",
-		"cypress-iframe": "^1.0.1"
+		"cypress-iframe": "^1.0.1",
+		"multiple-cucumber-html-reporter": "^3.6.0"
 	}
 }
