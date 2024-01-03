@@ -1,7 +1,13 @@
+/// <reference types="Cypress" />
+
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+
+import HomePage from '../../../pageObjects/HomePage';
+import ProductsPage from '../../../pageObjects/ProductsPage';
 
 const homePage = new HomePage();
 const productsPage = new ProductsPage();
+let name;
 
 Given('I open Ecommerce page', () => {
 	cy.visit(Cypress.env('url') + '/angularpractice/');
@@ -10,14 +16,14 @@ Given('I open Ecommerce page', () => {
 When('I add items to cart', () => {
 	homePage.getShopTab().click();
 	// Array and Custom Command
-	this.data.productName.forEach((product) => {
+	globalThis.data.productName.forEach((product) => {
 		cy.selectProduct(product);
 	});
 	// cy.wait(5000);
 	productsPage.getCheckoutButton().click();
 });
 
-And('Validate the total prices', () => {
+Then('Validate the total prices', () => {
 	// Compare Line Items Vs Total
 	let sum = 0;
 	cy.get('tr td:nth-child(4) strong')
@@ -58,4 +64,25 @@ Then('Select the country, submit and verify thank you message', () => {
 		// 	//
 		// }
 	});
+});
+
+When('I fill the form details', (dataTable) => {
+	// homePage.getEditBox().type(globalThis.data.name);
+	homePage.getEditBox().type(dataTable.rawTable[1][0]);
+	// homePage.getGender().select(globalThis.data.gender);
+	homePage.getGender().select(dataTable.rawTable[1][1]);
+});
+
+Then("Validate the form's behaviour", () => {
+	// Two way binding example input matches name
+	homePage.getTwoWayDataBinding().should('have.value', globalThis.data.name);
+	// Min Length is 2
+	homePage.getEditBox().should('have.attr', 'minlength', '2');
+	// Entrepreneur option box is disabled
+	homePage.getEntrepreneur().should('be.disabled');
+	// cy.pause();
+});
+
+Then('Select the Shop page', () => {
+	homePage.getShopTab().click();
 });
