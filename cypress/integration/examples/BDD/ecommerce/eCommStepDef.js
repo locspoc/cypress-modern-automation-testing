@@ -68,14 +68,15 @@ Then('Select the country, submit and verify thank you message', () => {
 
 When('I fill the form details', (dataTable) => {
 	// homePage.getEditBox().type(globalThis.data.name);
-	homePage.getEditBox().type(dataTable.rawTable[1][0]);
+	name = dataTable.rawTable[1][0];
+	homePage.getEditBox().type(name);
 	// homePage.getGender().select(globalThis.data.gender);
 	homePage.getGender().select(dataTable.rawTable[1][1]);
 });
 
 Then("Validate the form's behaviour", () => {
 	// Two way binding example input matches name
-	homePage.getTwoWayDataBinding().should('have.value', globalThis.data.name);
+	homePage.getTwoWayDataBinding().should('have.value', name);
 	// Min Length is 2
 	homePage.getEditBox().should('have.attr', 'minlength', '2');
 	// Entrepreneur option box is disabled
