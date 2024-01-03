@@ -20,9 +20,9 @@
 	},
 	"homepage": "https://github.com/locspoc/cypress-modern-automation-testing#readme",
 	"devDependencies": {
+		"@badeball/cypress-cucumber-preprocessor": "^20.0.0",
 		"@cypress/browserify-preprocessor": "^3.0.2",
 		"cypress": "^13.6.1",
-		"cypress-cucumber-preprocessor": "^4.3.1",
 		"cypress-iframe": "^1.0.1"
 	}
 }
