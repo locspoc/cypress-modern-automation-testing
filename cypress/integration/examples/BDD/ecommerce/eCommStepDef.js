@@ -13,15 +13,25 @@ Given('I open Ecommerce page', () => {
 	cy.visit(Cypress.env('url') + '/angularpractice/');
 });
 
-When('I add items to cart', () => {
+When('I add items to cart', function () {
 	homePage.getShopTab().click();
 	// Array and Custom Command
-	globalThis.data.productName.forEach((product) => {
+	this.data.productName.forEach((product) => {
 		cy.selectProduct(product);
 	});
 	// cy.wait(5000);
 	productsPage.getCheckoutButton().click();
 });
+
+// When('I add items to cart', () => {
+// 	homePage.getShopTab().click();
+// 	// Array and Custom Command
+// 	globalThis.data.productName.forEach((product) => {
+// 		cy.selectProduct(product);
+// 	});
+// 	// cy.wait(5000);
+// 	productsPage.getCheckoutButton().click();
+// });
 
 Then('Validate the total prices', () => {
 	// Compare Line Items Vs Total
