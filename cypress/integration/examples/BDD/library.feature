@@ -13,3 +13,9 @@ Feature: Library mock data
     Given I open library page 
     When I send a mock reqeust for lirbary info
     Then Receive mock data 2
+
+    @Moking
+    Scenario: Mock test without frontend
+    Given Post request to url
+    When New book info sent
+    Then Success message received

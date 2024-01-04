@@ -68,3 +68,19 @@ Then('Receive mock data 2', () => {
 	// cy.get('tbody tr th').should('have.text', '2');
 	// length of response array = number of rows in table
 });
+
+Given('Post request to url', () => {
+	cy.request('POST', 'http://216.10.245.166/Library/Addbook.php', {
+		name: 'Learn Appium Automation with Java',
+		isbn: 'bcdsss',
+		aisle: '22s7',
+		author: 'John Foe',
+	}).then(function (response) {
+		expect(response.body).to.have.property('Msg', 'successfully added');
+		expect(response.status).to.eq(200);
+	});
+});
+
+When('New book info sent', () => {});
+
+Then('Success message received', () => {});
