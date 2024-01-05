@@ -11,3 +11,28 @@ Given('Is logged in through local storage', () => {
 		});
 	});
 });
+
+When('Product added to cart', () => {
+	cy.get('.card-body button:last-of-type').eq(1).click();
+	cy.get('[routerlink*="cart"]').click();
+});
+
+Then('Go to checkout', () => {
+	cy.contains('Checkout').click();
+});
+
+Then('Place order', () => {
+	cy.get('[placeholder*="Country"]').type('ind');
+	cy.get('.ta-results button').each(($el, index, $list) => {
+		if ($el.text() === ' India') {
+			cy.log($el);
+			cy.wrap($el).click();
+		}
+	});
+	cy.get('.action__submit').click();
+});
+
+Then('Download csv file', () => {
+	cy.wait(2000);
+	cy.get('.order-summary button').eq(1).click();
+});
