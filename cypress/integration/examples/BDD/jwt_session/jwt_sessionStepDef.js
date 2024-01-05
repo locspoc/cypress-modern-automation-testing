@@ -1,6 +1,9 @@
 /// <reference types="Cypress" />
+const neatCSV = require('neat-csv');
 
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+
+// import neatCSV from 'neat-csv';
 
 Given('Is logged in through local storage', () => {
 	cy.LoginAPI().then(function () {
@@ -34,5 +37,13 @@ Then('Place order', () => {
 
 Then('Download csv file', () => {
 	cy.wait(2000);
-	cy.get('.order-summary button').eq(1).click();
+	cy.get('.order-summary button').eq(0).click();
+
+	cy.readFile(
+		Cypress.config('fileServerFolder') +
+			'/cypress/downloads/order-invoice_mrlocspoc.csv'
+	).then(async (text) => {
+		const csv = await neatCSV(text);
+		console.log('csv: ', csv);
+	});
 });
