@@ -13,7 +13,18 @@
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
 
-// Custom Command
+// Custom Command: Login API
+Cypress.Commands.add('LoginAPI', () => {
+	cy.request('POST', 'https://rahulshettyacademy.com/api/ecom/auth/login', {
+		userEmail: 'mrlocspoc@gmail.com',
+		userPassword: 'SsZ*WqKkiRkp4F',
+	}).then(function (response) {
+		expect(response.status).to.eq(200);
+		Cypress.env('token', response.body.token);
+	});
+});
+
+// Custom Command: selectProduct
 Cypress.Commands.add('selectProduct', (productName) => {
 	cy.get('h4.card-title').each(($el, index, $list) => {
 		if ($el.text().includes(productName)) {

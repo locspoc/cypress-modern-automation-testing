@@ -13,6 +13,7 @@ Given('I open Ecommerce page', () => {
 	cy.visit(Cypress.env('url') + '/angularpractice/');
 });
 
+// Use of this requires function(){} not ()=>{}
 When('I add items to cart', function () {
 	homePage.getShopTab().click();
 	// Array and Custom Command
