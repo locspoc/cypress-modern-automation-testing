@@ -30,9 +30,11 @@
 		"@cypress/browserify-preprocessor": "^3.0.2",
 		"cypress": "^13.6.1",
 		"cypress-iframe": "^1.0.1",
+		"cypress-sql-server": "^1.0.0",
 		"multiple-cucumber-html-reporter": "^3.6.0"
 	},
 	"dependencies": {
+		"dotenv": "^16.3.1",
 		"neat-csv": "^5.1.0"
 	}
 }
