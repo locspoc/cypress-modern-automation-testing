@@ -78,3 +78,14 @@ Then('Download Excel file and validate', () => {
 
 	// Task - (File,DB) -> Config.js, (ExcelToJson)-> cy.task(ExcelToJson)
 });
+
+Then('Download Excel file and check it', () => {
+	cy.wait(2000);
+	cy.get('.order-summary button').contains('Excel').click();
+	const filePath =
+		Cypress.config('fileServerFolder') +
+		'/cypress/downloads/order-invoice_mrlocspoc.xlsx';
+	cy.readFile(filePath).then(function (text) {
+		expect(text).to.include(productName);
+	});
+});
