@@ -51,8 +51,41 @@ Then('Download csv file', () => {
 			'/cypress/downloads/order-invoice_mrlocspoc.csv'
 	).then(async (text) => {
 		const csv = await neatCSV(text);
-		console.log('csv: ', csv);
+		// console.log('csv: ', csv);
 		const actualProductNameCSV = csv[0]['Product Name'];
 		expect(productName).to.equal(actualProductNameCSV);
+	});
+});
+
+Then('Download Excel file and validate', () => {
+	cy.wait(2000);
+	// cy.get('.order-summary button').eq(1).click();x
+	cy.get('.order-summary button').contains('Excel').click();
+	const filePath =
+		Cypress.config('fileServerFolder') +
+		'/cypress/downloads/order-invoice_mrlocspoc.xlsx';
+	cy.task('excelToJsonConverter', filePath).then(function (result) {
+		cy.log(result);
+		cy.log(result.data[1].A);
+		expect(productName).to.equal(result.data[1].B);
+		// console.log('result: ', result);
+	});
+
+	// Browser(Engine) - JS code -> Client Side Environment (Front End) - Cypress
+
+	// Node (Engine) - JS code -> Back End applications / environment
+	// Accessing files - fs, Database access,
+
+	// Task - (File,DB) -> Config.js, (ExcelToJson)-> cy.task(ExcelToJson)
+});
+
+Then('Download Excel file and check it', () => {
+	cy.wait(2000);
+	cy.get('.order-summary button').contains('Excel').click();
+	const filePath =
+		Cypress.config('fileServerFolder') +
+		'/cypress/downloads/order-invoice_mrlocspoc.xlsx';
+	cy.readFile(filePath).then(function (text) {
+		expect(text).to.include(productName);
 	});
 });
