@@ -9,3 +9,11 @@ Feature: Testing Login using JWT Token
     Then Go to checkout
     Then Place order
     Then Download csv file
+
+    @JWT
+    Scenario: Place order and download Excel
+    Given Is logged in through local storage
+    When Product added to cart
+    Then Go to checkout
+    Then Place order
+    Then Download Excel file and validate

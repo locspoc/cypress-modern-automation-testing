@@ -1,4 +1,6 @@
 /// <reference types="Cypress" />
+const excelToJson = require('convert-excel-to-json');
+const fs = require('fs');
 const neatCSV = require('neat-csv');
 
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
@@ -55,4 +57,17 @@ Then('Download csv file', () => {
 		const actualProductNameCSV = csv[0]['Product Name'];
 		expect(productName).to.equal(actualProductNameCSV);
 	});
+});
+
+Then('Download Excel file and validate', () => {
+	cy.wait(2000);
+	// cy.get('.order-summary button').eq(1).click();x
+	cy.get('.order-summary button').contains('Excel').click();
+	const filePath =
+		Cypress.config('fileServerFolder') +
+		'/cypress/downloads/order-invoice_mrlocspoc.xlsx';
+	const result = excelToJson({
+		source: fs.readFileSync(filePath),
+	});
+	console.log('result: ', result);
 });
