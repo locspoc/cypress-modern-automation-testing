@@ -1,6 +1,4 @@
 /// <reference types="Cypress" />
-const excelToJson = require('convert-excel-to-json');
-const fs = require('fs');
 const neatCSV = require('neat-csv');
 
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
@@ -53,7 +51,7 @@ Then('Download csv file', () => {
 			'/cypress/downloads/order-invoice_mrlocspoc.csv'
 	).then(async (text) => {
 		const csv = await neatCSV(text);
-		console.log('csv: ', csv);
+		// console.log('csv: ', csv);
 		const actualProductNameCSV = csv[0]['Product Name'];
 		expect(productName).to.equal(actualProductNameCSV);
 	});
@@ -66,8 +64,17 @@ Then('Download Excel file and validate', () => {
 	const filePath =
 		Cypress.config('fileServerFolder') +
 		'/cypress/downloads/order-invoice_mrlocspoc.xlsx';
-	const result = excelToJson({
-		source: fs.readFileSync(filePath),
+	cy.task('excelToJsonConverter', filePath).then(function (result) {
+		cy.log(result);
+		cy.log(result.data[1].A);
+		expect(productName).to.equal(result.data[1].B);
+		// console.log('result: ', result);
 	});
-	console.log('result: ', result);
+
+	// Browser(Engine) - JS code -> Client Side Environment (Front End) - Cypress
+
+	// Node (Engine) - JS code -> Back End applications / environment
+	// Accessing files - fs, Database access,
+
+	// Task - (File,DB) -> Config.js, (ExcelToJson)-> cy.task(ExcelToJson)
 });

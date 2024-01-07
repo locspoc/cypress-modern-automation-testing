@@ -1,6 +1,8 @@
 require('dotenv').config();
 const { defineConfig } = require('cypress');
 const browserify = require('@badeball/cypress-cucumber-preprocessor/browserify');
+const excelToJson = require('convert-excel-to-json');
+const fs = require('fs');
 const preprocessor = require('@badeball/cypress-cucumber-preprocessor');
 const sqlServer = require('cypress-sql-server');
 
@@ -28,6 +30,17 @@ async function setupNodeEvents(on, config) {
 	// SQL Server
 	tasks = sqlServer.loadDBPlugin(config.db);
 	on('task', tasks);
+
+	// Excel To Json
+	on('task', {
+		excelToJsonConverter(filePath) {
+			const result = excelToJson({
+				source: fs.readFileSync(filePath),
+			});
+
+			return result;
+		},
+	});
 
 	// Make sure to return the config object as it might have been modified by the plugin.
 	return config;
